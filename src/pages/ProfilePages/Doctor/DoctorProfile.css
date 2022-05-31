@@ -1,0 +1,24 @@
+.doc-profile-container {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    margin-bottom: 4rem;
+}
+
+.doc-profile-container .left-container {
+    display:flex;
+    flex: 0.5;
+    align-items: center;
+    justify-content: center;
+}
+
+.doc-profile-container .right-container {
+    flex: 1;
+}
+
+@media screen and (max-width: 815px) {
+    .doc-profile-container {
+        display: flex;
+        flex-direction: column;
+    }
+}

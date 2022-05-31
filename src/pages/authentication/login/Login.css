@@ -1,0 +1,36 @@
+.login-container{
+    display: flex;
+    flex-wrap: wrap;
+    width: 100%;
+    margin-bottom: 2rem;
+    /* flex-direction: column; */
+}
+
+.login-container .flex-child {
+    flex: 1;
+    /* border: 2px solid yellow; */
+    height: 80vh;
+}
+
+.login-container .left-container {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    margin-right: 20px;
+} 
+
+.login-container .right-container {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    /* width:100%; */
+    /* margin-right: 20px; */
+} 
+
+.login-container .right-container .submit{
+    background-color : #2AA7FF;
+    margin-top: 1rem;
+    width:100%;
+}

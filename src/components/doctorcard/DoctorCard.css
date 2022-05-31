@@ -1,0 +1,33 @@
+.card-container{
+    display: flex;
+    flex-direction: column;
+    width: 15rem;
+    max-width: 15rem;
+    padding: 1rem;
+    justify-content: space-evenly;
+    align-items: center;
+    border-radius: 1rem;
+    -webkit-box-shadow: inset 6px 9px 12px -10px rgb(115, 142, 189);
+    -moz-box-shadow: inset 6px 9px 12px -10px rgb(115, 142, 189);
+    box-shadow: inset 6px 11px 18px -12px rgb(115, 142, 189);
+}
+
+.card-container .doctor-name{
+    color: #162D55;
+    text-align: center;
+    font-size: 1.6rem; 
+    font-weight: 500;  
+}
+
+.card-container .speciality{
+    text-align: center;
+    font-size: 1rem;
+}
+
+.card-container .doctor-pic{
+    object-fit: center contain;
+    /* max-width: 10rem; */
+    border-radius: 50%;
+    width:10rem;
+    height:10rem;
+}

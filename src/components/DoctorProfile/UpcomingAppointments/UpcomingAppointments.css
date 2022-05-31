@@ -1,0 +1,22 @@
+.upcoming-appointments table {
+  font-family: arial, sans-serif;
+  border-collapse: collapse;
+  width: 100%;
+  align-content: center;
+}
+
+.upcoming-appointments table td , th {
+  border: 1px solid #dddddd;
+  text-align: left;
+  padding: 8px;
+}
+
+.upcoming-appointments table tr:nth-child(even) {
+  background-color: #162D55;
+  color: white;
+}
+
+.upcoming-appointments table tr:nth-child(odd) {
+  background-color: white;
+  color: #162D55;
+}

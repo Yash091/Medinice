@@ -1,0 +1,31 @@
+.Patient-left-container {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    border-right: 3px solid rgb(59, 59, 59);
+    width: 70%;
+    /* height: 80vh; */
+}
+
+/* .doc-left-container .img-container { */
+    /* display: flex; */
+    /* align-items: center; */
+    /* justify-content: center; */
+/* } */
+
+.patient-left-container .name {
+    font-size: 1.5rem;
+    font-weight: 500;
+    color: #162D55;
+    margin-top: 2rem;
+}
+
+
+
+
+@media screen and (max-width: 815px) {
+    .patient-left-container {
+        padding-left: 1rem;
+        width: 100%;
+    }
+}

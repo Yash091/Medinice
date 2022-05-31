@@ -1,0 +1,24 @@
+.patient-profile-container {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    margin-bottom: 4rem;
+}
+
+.patient-profile-container .left-container {
+    display:flex;
+    flex: 0.5;
+    align-items: center;
+    justify-content: center;
+}
+
+.patient-profile-container .right-container {
+    flex: 1;
+}
+
+@media screen and (max-width: 815px) {
+    .patient-profile-container {
+        display: flex;
+        flex-direction: column;
+    }
+}

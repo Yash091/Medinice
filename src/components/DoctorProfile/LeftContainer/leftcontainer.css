@@ -1,0 +1,51 @@
+.doc-left-container {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    /* border-right: 3px solid rgb(59, 59, 59); */
+    width: 70%;
+    /* height: 80vh; */
+}
+
+/* .doc-left-container .img-container { */
+    /* display: flex; */
+    /* align-items: center; */
+    /* justify-content: center; */
+/* } */
+
+.doc-left-container .name {
+    font-size: 1.5rem;
+    font-weight: 500;
+    color: #162D55;
+    margin-top: 2rem;
+}
+
+.doc-left-container .speciality , .experience {
+    font-size: 1.5rem;
+    font-weight: 400;
+    color : #444444;
+    /* margin-top: 2rem; */
+    /* color: #757575; */
+}
+
+.doc-left-container .description {
+    margin-top: 1rem;
+}
+
+.doc-left-container .description p{
+    font-size: 1.2rem;
+    color : #444444;
+}
+
+.doc-left-container, .description span{
+    margin-top: 2rem;
+    font-size: 1.5rem;
+    color :  #162D55;
+}
+
+@media screen and (max-width: 815px) {
+    .doc-left-container {
+        padding-left: 1rem;
+        width: 100%;
+    }
+}
