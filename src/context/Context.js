@@ -10,6 +10,9 @@ const Context = ({children}) => {
     const initial = JSON.parse(window.localStorage.getItem("user"));
     const [userData , setUserData] = useState(initial);
     const [requestedAppt,setrequestedAppt] = useState([]);
+    const [upcomingAppt,setUpcomingAppt] = useState([]);
+    const [patUpcomingAppt,setPatUpcomingAppt] = useState([]);
+    const [pastAppt,setPastAppt] = useState([]);
     useEffect(()=>{
         const data = JSON.parse(window.localStorage.getItem("user"));
         // if(!data)
@@ -19,7 +22,7 @@ const Context = ({children}) => {
     },[navigate]);
 
   return (
-    <AppContext.Provider value={{userData,setUserData,requestedAppt,setrequestedAppt}}>{children}</AppContext.Provider>
+    <AppContext.Provider value={{userData,setUserData,requestedAppt,setrequestedAppt,upcomingAppt,setUpcomingAppt,pastAppt,setPastAppt,patUpcomingAppt,setPatUpcomingAppt}}>{children}</AppContext.Provider>
   )
 }
 

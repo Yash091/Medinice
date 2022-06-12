@@ -39,7 +39,7 @@ const EditPatientProfile = () => {
   
   const handleChange = (e) => {
     setUser({ ...user, [e.target.name]: e.target.value });
-    console.log(user);
+    // console.log(user);
   };
 
   const EditUser = async (e) => {
@@ -47,7 +47,7 @@ const EditPatientProfile = () => {
     try {
       // console.log(user);
       const data = await updatePatient(user);
-      console.log(data);
+      // console.log(data);
       if (data?.status === 200) {
         if (data?.data?.message !== "User Updated") window.alert(data.data.message);
         else {

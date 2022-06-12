@@ -45,7 +45,7 @@ const InputFields = () => {
     
     const handleChange = (e) => {
         setUser({ ...user, [e.target.name]: e.target.value });
-        console.log(user);
+        // console.log(user);
     };
     const uploadImage = (pic) =>{
         const formData = new FormData();
@@ -58,7 +58,7 @@ const InputFields = () => {
         const getImage = async () => {
             if (file) {
                 const image = await uploadImage(file);
-                console.log(image);
+                // console.log(image);
                 user.picture = image.data.url;
                 setImageURL(image.data.url);
             }

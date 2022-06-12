@@ -15,18 +15,18 @@ const DoctorDetailView = ({socket}) => {
     
     const getDoctorDetail = async () => {
         const data = await getDoctor(id);
-        console.log(data.data[0]);
+        // console.log(data.data[0]);
         if(data?.data)
           setDoctor(data.data[0]);
     }
     getDoctorDetail();
   }, [])
   
-  console.log(doctor);
+  // console.log(doctor);
   
   const bookAppointment = () => {
-    console.log("getappointment",socket);
-      socket.emit("getappointment",{id,userData})
+    // console.log("getappointment",socket);
+    socket.emit("getappointment",{id,userData});
   }
 
   return (

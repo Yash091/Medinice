@@ -5,7 +5,7 @@ import LeftContainer from "../../../components/PatientProfile/LeftContainer/Left
 import PastAppointments from '../../../components/PatientProfile/PastAppointments/PastAppointments'
 import UpcomingAppointments from '../../../components/PatientProfile/UpcomingAppointments/UpcomingAppointments'
 
-const PatientProfile = () => {
+const PatientProfile = ({socket}) => {
   return (
     <div className="patient-profile-container">
       <div className = "left-container">
@@ -20,7 +20,7 @@ const PatientProfile = () => {
           </TabList>
           <TabPanels>
               <TabPanel>
-                  <UpcomingAppointments/>
+                  <UpcomingAppointments socket={socket}/>
               </TabPanel>
               <TabPanel>
                   <PastAppointments />

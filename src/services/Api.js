@@ -41,13 +41,78 @@ export const getDoctor = async (id) => {
 
 export const updateDoctor = async (obj) => {
     try {
-        console.log(obj);
+        // console.log(obj);
         const data = await axios.post(`${url}/updatedoctor` , obj);
         return data;
     } catch (error) {
         return error;
     }
 }
+
+export const addPendingRequest = async (obj) => {
+    try {
+        console.log('before api')
+        const data = await axios.post(`${url}/addpendingrequest` , obj);
+        console.log('after api')
+        return data;
+    } catch (error) {
+        return error;
+    }
+}
+
+export const getPendingAppts = async (id) => {
+  try {
+    const data = await axios.get(`${url}/getpendingappts/${id}`);
+    return data;
+  } catch (error) {
+    return error;
+  }
+};
+
+export const deletependingReq = async (obj) => {
+  try {
+    const data = await axios.post(`${url}/deletependingreq`, obj);
+    return data;
+  } catch (error) {
+    return error;
+  }
+};
+
+export const addupcomingAppt = async (obj) => {
+    try {
+        const data = await axios.post(`${url}/addupcomingappt`,obj);
+        return data;        
+    } catch (error) {
+        return error;
+    }
+}
+
+export const getUpcomingAppts = async (id) => {
+  try {
+    const data = await axios.get(`${url}/getupcomingappts/${id}`);
+    return data;
+  } catch (error) {
+    return error;
+  }
+};
+
+export const addPastAppt = async(obj) => {
+    try {
+        const data = await axios.post(`${url}/addpastappt`,obj);
+        return data;
+    } catch (error) {
+        return error;
+    }
+}
+
+export const getPastAppts = async (id) => {
+  try {
+    const data = await axios.get(`${url}/getpastappts/${id}`);
+    return data;
+  } catch (error) {
+    return error;
+  }
+};
 
 ///////////////////////////////////////////////////////////////////
 // Patient
@@ -98,8 +163,17 @@ export const searchDoctor = async (obj) => {
 
 export const updatePatient = async (obj) => {
     try {
-        console.log(obj);
+        // console.log(obj);
         const data = await axios.post(`${url}/updatepatient` , obj);
+        return data;
+    } catch (error) {
+        return error;
+    }
+}
+
+export const addPatUpcomingAppt = async (obj) => {
+    try {
+        const data = await axios.post(`${url}/addpatupcomingappt`, obj);
         return data;
     } catch (error) {
         return error;

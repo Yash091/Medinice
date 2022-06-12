@@ -38,7 +38,7 @@ const InputFields = () => {
     const [file, setFile] = useState("");
     const handleChange = (e) => {
         setUser({ ...user, [e.target.name]: e.target.value });
-        console.log(user);
+        // console.log(user);
     };
 
     // useEffect(() => {

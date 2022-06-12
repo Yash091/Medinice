@@ -50,7 +50,7 @@ const EditDoctorProfile = () => {
 
   const handleChange = (e) => {
       setUser({ ...user, [e.target.name]: e.target.value });
-      console.log(user);
+    //   console.log(user);
   };
 
   const uploadImage = (pic) =>{
@@ -64,7 +64,7 @@ const EditDoctorProfile = () => {
       const getImage = async () => {
           if (file) {
               const image = await uploadImage(file);
-              console.log(image);
+            //   console.log(image);
               user.picture = image.data.url;
               setImageURL(image.data.url);
           }
@@ -74,11 +74,11 @@ const EditDoctorProfile = () => {
 
   const EditUser = async (e) => {
     e.preventDefault();
-    console.log("click");
+    // console.log("click");
     try {
-        console.log(user);
+        // console.log(user);
         const data = await updateDoctor(user);
-        console.log(data); 
+        // console.log(data); 
         if (data.status === 200) {
             if (data.data.message !== "User Updated") window.alert(data.data.message);
             else {

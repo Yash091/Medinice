@@ -4,7 +4,7 @@ import doc from "../../images/dr.png"
 import {Link} from "react-router-dom";
 
 const DoctorCard = (props) => {
-  console.log(props,"from doctor card");
+  // console.log(props,"from doctor card");
   return (
     <Link to={`/doctordetailview/${props.id}`}>
       <div className="card-container">

@@ -15,7 +15,7 @@ const LeftContainer = () => {
     // console.log(data);
     if(data) {
       setPat(data);
-      console.log(data);
+      // console.log(data);
     }
   }, [])
 

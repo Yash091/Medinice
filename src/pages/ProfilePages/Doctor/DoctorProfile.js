@@ -6,7 +6,7 @@ import UpcomingAppointments from '../../../components/DoctorProfile/UpcomingAppo
 import PastAppointments from '../../../components/DoctorProfile/PastAppointments/PastAppointments'
 import PendingRequests from '../../../components/DoctorProfile/PendingRequests/PendingRequests'
 
-const DoctorProfile = () => {
+const DoctorProfile = ({socket}) => {
   return (
     <div className="doc-profile-container">
       <div className = "left-container">
@@ -27,7 +27,7 @@ const DoctorProfile = () => {
                   <PastAppointments />
               </TabPanel>
               <TabPanel>
-                  <PendingRequests />
+                  <PendingRequests socket={socket}/>
               </TabPanel>
           </TabPanels>
       </Tabs>

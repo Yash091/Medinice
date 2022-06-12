@@ -1,39 +1,45 @@
-import React from 'react'
+import React, { useContext, useEffect } from "react";
+import { AppContext } from "../../../context/Context";
+import { getDoctor } from "../../../services/Api";
 import "./PastAppointments.css";
 
 const PastAppointments = () => {
+  const { pastAppt, setPastAppt, userData } = useContext(AppContext);
+  useEffect(() => {
+    const getdoc = async () => {
+      const data = await getDoctor(userData?._id);
+      // console.log(data,"from past")
+      setPastAppt([data?.data[0]?.pastAppt]);
+    };
+    getdoc();
+  }, []);
+  console.log(pastAppt?pastAppt:"wait");
   return (
     <div>
-        <div className="past-appointments">
-            <table className="table table-striped">
-                <thead>
+      <div className="past-appointments">
+        <table className="table table-striped">
+          <thead>
+            <tr>
+              <th>Name</th>
+              <th>Time Slot</th>
+              <th>Date</th>
+            </tr>
+          </thead>
+          <tbody>
+            {pastAppt[0]?.map((ele) => {
+              return (
                 <tr>
-                    <th>Name</th>
-                    <th>Time Slot</th>
-                    <th>Description</th>
+                  <td>{ele?._id?.name}</td>
+                  <td>{ele?.date}</td>
+                  <td>{ele?.time}</td>
                 </tr>
-                </thead>
-                <tbody>
-                <tr>
-                    <td>John</td>
-                    <td>Doe</td>
-                    <td>john@example.com</td>
-                </tr>
-                <tr>
-                    <td>Mary</td>
-                    <td>Moe</td>
-                    <td>mary@example.com</td>
-                </tr>
-                <tr>
-                    <td>July</td>
-                    <td>Dooley</td>
-                    <td>july@example.com</td>
-                </tr>
-                </tbody>
-            </table>
-        </div>
+              );
+            })}
+          </tbody>
+        </table>
+      </div>
     </div>
-  )
-}
+  );
+};
 
-export default PastAppointments
+export default PastAppointments;

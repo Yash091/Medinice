@@ -1,7 +1,22 @@
-import React from "react";
+import {React , useContext, useEffect} from "react";
+import { AppContext } from "../../../context/Context";
+import { getPatient } from "../../../services/Api";
 import "./UpcomingAppointments.css"
 
-const UpcomingAppointments = () => {
+const UpcomingAppointments = ({socket}) => {
+  
+  const {patUpcomingAppt, setPatUpcomingAppt,userData} = useContext(AppContext)
+  
+  useEffect(() => {
+    const getPat = async() => {
+      const data = await getPatient(userData._id);
+      console.log(data);
+      setPatUpcomingAppt([data.data[0].upcomingAppt]);
+    }
+    getPat();
+  },[])
+  console.log(patUpcomingAppt ? patUpcomingAppt : "Wait");
+
   return (
     <div className="upcoming-appointments">
       <table className="table table-striped">
@@ -9,25 +24,21 @@ const UpcomingAppointments = () => {
           <tr>
             <th>Doctor</th>
             <th>Time Slot</th>
-            <th>Description</th>
+            <th>Date</th>
           </tr>
         </thead>
         <tbody>
-          <tr>
-            <td>John</td>
-            <td>Doe</td>
-            <td>john@example.com</td>
-          </tr>
-          <tr>
-            <td>Mary</td>
-            <td>Moe</td>
-            <td>mary@example.com</td>
-          </tr>
-          <tr>
-            <td>July</td>
-            <td>Dooley</td>
-            <td>july@example.com</td>
-          </tr>
+        {
+          patUpcomingAppt[0]?.map((elem) => {
+            return (
+              <tr>
+                <td>{elem?._id.name}</td>
+                <td>{elem?.time}</td>
+                <td>{elem?.date}</td>
+              </tr>
+            );
+          })
+        }
         </tbody>
       </table>
     </div>

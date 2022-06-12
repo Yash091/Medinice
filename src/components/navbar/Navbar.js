@@ -1,7 +1,5 @@
 import { React, useState , useEffect , useContext } from "react";
-// import navpic from "../../images/shubhwed_icon.png";
 import "./Navbar.css";
-// import LoginModal from "../loginModal/LoginModal";
 import { Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 import { HashLink } from 'react-router-hash-link';
@@ -17,7 +15,6 @@ import {
   MenuOptionGroup,
   MenuDivider,
 } from "@chakra-ui/react";
-// import { BellIcon, ChevronDownIcon } from "@chakra-ui/icons";
 
 const Navbar = () => {
 
@@ -25,7 +22,7 @@ const Navbar = () => {
   const {userData , setUserData} = useContext(AppContext);
   
   const verticalNav = (e) => {
-    console.log(e.target);
+    
     const nav = document.querySelector(".nav-links-horizontal");
     nav.classList.toggle("responsive");
     const temp = document.querySelector("#nav-link2");
@@ -81,7 +78,7 @@ const Navbar = () => {
                 <HashLink to="#why">Why Choose Us?</HashLink>
               </li>
               <li>
-                <HashLink to="#contactus">Contact Us</HashLink>
+                <HashLink to="/contact">Contact Us</HashLink>
               </li>
               <li>
                 {
@@ -93,8 +90,8 @@ const Navbar = () => {
                             <MenuButton>
                               <Avatar
                                 size="md"
-                                name={userData?.name}
                                 src={userData?.picture}
+                                name={userData?.name}
                               />
                             </MenuButton>
                             <MenuList maxW="inherit">

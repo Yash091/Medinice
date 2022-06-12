@@ -32,7 +32,7 @@ const Login = () => {
     const logUser = async () => {
         if(user.designation === "patient") {
             const data = await logPatient(user);
-            console.log(data.data);
+            // console.log(data.data);
             if(data?.data?.message === "Patient logged in Successfully") {
                 window.localStorage.setItem("user",JSON.stringify(data?.data?.data));
                 setUserData(data?.data?.data);
@@ -65,7 +65,7 @@ const Login = () => {
 
     const handleInputChange = (e) => {
         setUser({...user , [e.target.name]: e.target.value});
-        console.log(user);
+        // console.log(user);
     }
 
     return (

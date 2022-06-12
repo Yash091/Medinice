@@ -12,9 +12,9 @@ const PatientLandingPage = () => {
   };
   useEffect(() => {
     const getDoctor = async () => {
-      console.log(input);
+      // console.log(input);
       const data = await searchDoctor(input);
-      console.log(data);
+      // console.log(data);
       setDoctors(data.data.data);
     };
     getDoctor();
