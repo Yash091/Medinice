@@ -18,6 +18,7 @@ import EditDoctorProfile from "./pages/ProfilePages/Doctor/EditProfile/EditDocto
 import DoctorDetailView from './pages/detailView/DoctorDetailView/DoctorDetailView.js';
 import PatientDetailView from "./pages/detailView/PatientDetailView/PatientDetailView";
 import EditPatientProfile from "./pages/ProfilePages/Patient/EditProfile/EditPatientProfile.js";
+import VideoCall from "./pages/VideoCall/VideoCall.js"
 import { io } from "socket.io-client"
 import { AppContext } from "./context/Context";
 import { addPendingRequest, getDoctor , addPatUpcomingAppt } from "./services/Api.js";
@@ -81,6 +82,7 @@ function App() {
           <Route path="doctordetailview/:id" element={userData?.designation==="patient"?<DoctorDetailView socket={socket}/> :<Navigate to = "/"/>} />
           <Route path="patientdetailview" element={<PatientDetailView />} />
           <Route path="doctor/:id" element={<EditDoctorProfile />} />
+          <Route path="appointment/:id" element={<VideoCall />} />
           <Route path="patient/:id" element={userData?.designation==="patient"?<EditPatientProfile /> :<Navigate to = "/"/>} />
         </Routes>
         <Footer />

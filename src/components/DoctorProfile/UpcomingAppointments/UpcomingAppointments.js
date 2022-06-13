@@ -3,9 +3,11 @@ import "./UpcomingAppointments.css"
 import { AppContext } from "../../../context/Context";
 import { addPastAppt, getDoctor } from "../../../services/Api";
 import { Button, ButtonGroup } from '@chakra-ui/react'
+import { useNavigate } from "react-router-dom";
 
 const UpcomingAppointments = () => {
   
+  const navigate = useNavigate();
   const {upcomingAppt,userData,setUpcomingAppt,setPastAppt} = useContext(AppContext);
   // console.log(upcomingAppt[0]);
   useEffect(() => {
@@ -28,6 +30,7 @@ const UpcomingAppointments = () => {
       console.log(data);
       setPastAppt([data.data.data.pastAppt]);
       setUpcomingAppt([data.data.data.upcomingAppt]);
+      navigate(`/appointment/${userData._id}`);
   }
   
   return (

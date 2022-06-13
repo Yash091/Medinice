@@ -180,6 +180,15 @@ export const addPatUpcomingAppt = async (obj) => {
     }
 }
 
+export const addPatPastAppt = async (obj) => {
+    try {
+        const data = await axios.post(`${url}/addpatpastappt` , obj);
+        return data;
+    } catch (error) {
+        return error;
+    }
+}
+
 ///////////////////////////////////////////////////////////////////
 // Admin
 export const logAdmin = async (obj) =>{

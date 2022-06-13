@@ -4,6 +4,7 @@ import { getDoctor } from "../../../services/Api";
 import "./PastAppointments.css";
 
 const PastAppointments = () => {
+
   const { pastAppt, setPastAppt, userData } = useContext(AppContext);
   useEffect(() => {
     const getdoc = async () => {
@@ -13,7 +14,8 @@ const PastAppointments = () => {
     };
     getdoc();
   }, []);
-  console.log(pastAppt?pastAppt:"wait");
+  // console.log(pastAppt?pastAppt:"wait");
+  
   return (
     <div>
       <div className="past-appointments">
