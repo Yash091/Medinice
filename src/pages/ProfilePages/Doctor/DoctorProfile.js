@@ -21,7 +21,7 @@ const DoctorProfile = ({socket}) => {
           </TabList>
           <TabPanels>
               <TabPanel>
-                  <UpcomingAppointments/>
+                  <UpcomingAppointments socket={socket}/>
               </TabPanel>
               <TabPanel>
                   <PastAppointments />

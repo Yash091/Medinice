@@ -19,19 +19,29 @@ import DoctorDetailView from './pages/detailView/DoctorDetailView/DoctorDetailVi
 import PatientDetailView from "./pages/detailView/PatientDetailView/PatientDetailView";
 import EditPatientProfile from "./pages/ProfilePages/Patient/EditProfile/EditPatientProfile.js";
 import VideoCall from "./pages/VideoCall/VideoCall.js"
-import { io } from "socket.io-client"
+
 import { AppContext } from "./context/Context";
 import { addPendingRequest, getDoctor , addPatUpcomingAppt } from "./services/Api.js";
+import Peer from "simple-peer";
 
 function App() {
 
-  const [socket,setSocket] = useState(null);
-  const {userData, requestedAppt,setrequestedAppt , patUpcomingAppt, setPatUpcomingAppt} = useContext(AppContext);
+  const {
+    userData,
+    requestedAppt,
+    setrequestedAppt,
+    patUpcomingAppt,
+    setPatUpcomingAppt,
+    setDoctorSignal,
+    setReceivingDoctorCall,
+    socket,
+    setSocket
+  } = useContext(AppContext);
   
   useEffect(()=>{
     
     if(socket === null){
-      setSocket(io("http://localhost:8000"));
+      return;
     }else{
       if(userData)
         socket.emit("setup",{sender:userData});
@@ -61,9 +71,14 @@ function App() {
           }
           addPatientUpcoming();
         })
+        socket?.on("userCall" , ({pid, signalData, did}) => {
+          console.log(`${did} is calling`);
+          setDoctorSignal(signalData);
+          setReceivingDoctorCall(true);
+        })
     }
   },[socket]);
-
+  
   return (
     <>
       <ChakraProvider>
@@ -77,12 +92,10 @@ function App() {
           <Route path="patient" element={userData?.designation==="patient"? <PatientProfile socket={socket}/> : <Navigate to = "/"/>} />
           <Route path="admin" element={<AdminProfile />} />
           <Route path="patientlandingpage" element={userData?.designation==="patient"?<PatientLandingPage/>:<Navigate to = "/"/>}/>
-          {/* <Route path="doctorcard" element={<DoctorCard/>}/>
-          <Route path="doctorcards" element={<DoctorCards />}/> */}
           <Route path="doctordetailview/:id" element={userData?.designation==="patient"?<DoctorDetailView socket={socket}/> :<Navigate to = "/"/>} />
           <Route path="patientdetailview" element={<PatientDetailView />} />
           <Route path="doctor/:id" element={<EditDoctorProfile />} />
-          <Route path="appointment/:id" element={<VideoCall />} />
+          <Route path="appointment" element={<VideoCall socket={socket}/>} />
           <Route path="patient/:id" element={userData?.designation==="patient"?<EditPatientProfile /> :<Navigate to = "/"/>} />
         </Routes>
         <Footer />

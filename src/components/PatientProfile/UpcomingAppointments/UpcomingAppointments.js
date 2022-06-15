@@ -8,7 +8,7 @@ import { useNavigate } from "react-router-dom";
 const UpcomingAppointments = ({socket}) => {
     
   const navigate = useNavigate();
-  const {patUpcomingAppt, setPatUpcomingAppt,userData , setPatPastAppt , patPastAppt} = useContext(AppContext)
+  const {patUpcomingAppt, setPatUpcomingAppt,userData , setPatPastAppt , patPastAppt , receivingDoctorCall , setCallAccepted , callAccepted , call, answerCall} = useContext(AppContext)
   
   useEffect(() => {
     const getPat = async() => {
@@ -29,7 +29,9 @@ const UpcomingAppointments = ({socket}) => {
     console.log(data);
     setPatPastAppt([data.data.data.pastAppt]);
     setPatUpcomingAppt([data.data.data.upcomingAppt]);
-    navigate(`/appointment/${obj.did}`);
+    setCallAccepted(true);
+    answerCall();
+    navigate(`/appointment/?did=${obj?.did}&pid=${obj?.pid}`);
   };
   
   return (
@@ -53,9 +55,14 @@ const UpcomingAppointments = ({socket}) => {
                 <td>{elem?.time}</td>
                 <td>{elem?.date}</td>
                 <td>
-                  <Button colorScheme="teal" width={"100%"} variant="solid" onClick={()=>addPast(elem)}>
-                    Join
-                  </Button>
+                  { 
+                    call.isReceivingCall === true ? 
+                      <Button colorScheme="teal" width={"100%"} variant="solid" onClick={()=>addPast(elem)}>
+                        Join
+                      </Button>
+                    : 
+                      "Waiting for doctor to join" 
+                  }
                 </td>
               </tr>
             );
