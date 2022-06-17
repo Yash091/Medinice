@@ -108,7 +108,7 @@ const Context = ({ children }) => {
     setCallEnded(true);
 
     connectionRef.current.destroy();
-
+    socket.emit("disconnect");
     window.location.reload();
   };
 

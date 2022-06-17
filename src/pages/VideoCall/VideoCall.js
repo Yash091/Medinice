@@ -8,7 +8,7 @@ const VideoCall = () => {
   
   const [mute , setMute] = useState(false);
   const [mediaStream,setMediaStream] = useState(null);
-  const { name, callAccepted, myVideo, userVideo, callEnded, stream, call } = useContext(AppContext);
+  const { name, callAccepted, myVideo, userVideo, callEnded, stream, call,leaveCall } = useContext(AppContext);
   useEffect(() => {
     const func = async () => {
       const mediaStream = await navigator.mediaDevices.getUserMedia({
@@ -37,6 +37,12 @@ const VideoCall = () => {
     video.srcObject = mediaStream;
   }
   
+  const leave = (e) => {
+    e.preventDefault();
+    console.log("leave");
+    leaveCall();
+  }
+  
   return (
     <div className="videocall-container">
       <div className="heading">
@@ -44,7 +50,7 @@ const VideoCall = () => {
         <span className="nice">Nice</span>
       </div>
       <div className="video-container">
-        {callAccepted ? (
+        {callAccepted && !callEnded ? (
           <div className="video user">
             {
               <video
@@ -84,9 +90,8 @@ const VideoCall = () => {
         <div className="butt">
           <i className="fa fa-solid fa-video-slash" style={{fontSize: "20px" , color : "#162D55"}} onClick={(e) => {cameraOff(e)}}></i>
         </div>
-        <div className="butt">
-          {/* <i className="fa-solid fa-phone-xmark" style={{fontSize: "24px"}}></i> */}
-          <i className='fas fa-phone-slash' style={{fontSize:"20px",color:"#162D55"}}></i>
+        <div className="butt" >
+          <i className='fas fa-phone-slash' style={{fontSize:"20px",color:"#162D55"}} onClick={(e) => leave(e)}></i>
         </div>
       </div>
     </div>
