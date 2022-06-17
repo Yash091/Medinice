@@ -24,23 +24,29 @@ const Context = ({ children }) => {
   const [stream, setStream] = useState();
   const [name, setName] = useState('');
   const [call, setCall] = useState({});
-  const [me, setMe] = useState('');
-
+  const [me, setMe] = useState(''); 
+  const [myPeer,setMyPeer] = useState(null);
   const myVideo = useRef();
   const userVideo = useRef();
   const connectionRef = useRef();
 
-  
+  window.onbeforeunload = (event) => {
+    
+    if (connectionRef.current) {
+      connectionRef.current.destroy();
+      socket.emit("disconnect");
+      console.log("Hey it's here")
+    }
+  };
   useEffect(() => {
     navigator.mediaDevices.getUserMedia({ video: true, audio: true })
       .then((currentStream) => {
         setStream(currentStream);
         // console.log(currentStream);
-        
-        myVideo.current.srcObject = currentStream;
+        // myVideo.current.srcObject = currentStream;
        
       });
-
+      
     socket?.on('me', (id) => setMe(id));
 
     socket?.on('callUser', ({ from, name: callerName, signal }) => {
@@ -63,7 +69,8 @@ const Context = ({ children }) => {
     setCallAccepted(true);
 
     const peer = new Peer({ initiator: false, trickle: false, stream });
-
+    // setMyPeer(peer);
+    // myVideo.current.srcObject = stream;
     peer.on('signal', (data) => {
       socket.emit('answerCall', { signal: data, to: call.from });
     });
@@ -80,6 +87,7 @@ const Context = ({ children }) => {
   const callUser = ({id,me,name}) => {
     const peer = new Peer({ initiator: true, trickle: false, stream });
     console.log(peer);
+    // setMyPeer(peer);
     peer.on('signal', (data) => {
       socket.emit('callUser', { userToCall: id, signalData: data, from: me, name });
     });

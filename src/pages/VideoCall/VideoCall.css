@@ -1,1 +1,83 @@
+.videocall-container {
+    display: flex;
+    justify-content: space-between;
+    flex-direction: column;
+    padding-top: 4rem;
+    padding-bottom: 4rem;
+    background-color: white;
+    height: 100vh;
+}
 
+.videocall-container .heading .medi{
+    /* background-color: #a0d7ff; */
+    font-size: 2.5rem;
+    font-weight: 500;
+    color : #2AA7FF;
+    padding-left: 2rem;
+}
+
+.videocall-container .heading .nice{
+    font-size: 2.5rem;
+    font-weight: 500;
+}
+
+.videocall-container .video-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+}
+
+.videocall-container .video-container .video {
+    display: flex;
+    align-items: center;
+    justify-content: center;   
+}
+
+.videocall-container .video-container .video video{
+    width: 90%;
+    border-radius: 12px;
+}
+
+.videocall-container .video-container .video1 {
+    display: flex;
+}
+
+.videocall-container .buttons {
+    margin-top: 2.5rem;
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    gap: 2rem;
+}
+
+.videocall-container .buttons .butt {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    background: #2AA7FF;
+    height: 3.2rem;
+    width: 3.2rem;
+    border-radius: 50%;
+    cursor: pointer;
+    box-shadow: 5px 5px 5px lightblue;
+
+}
+
+.videocall-container .buttons .butt i{
+    padding: auto;
+}
+
+@media only screen and (max-width: 600px) {
+
+    .videocall-container .video-container {
+        display: flex;
+        flex-direction: column;
+        /* flex-wrap: wrap; */
+        /* width: 50%; */
+        justify-content: center;
+        gap: 2rem;
+    }
+}

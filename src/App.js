@@ -82,23 +82,21 @@ function App() {
   return (
     <>
       <ChakraProvider>
-        <Navbar />
         <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="login" element={userData?<Navigate to = "/"/>:<Login/>} />
-          <Route path="register" element={userData?<Navigate to = "/"/>:<Signup />} />
-          <Route path="contact" element = {<ContactUs />} />
-          <Route path="doctor" element={userData?.designation==="doctor"?<DoctorProfile socket={socket}/>:<Navigate to ="/"/>} />
-          <Route path="patient" element={userData?.designation==="patient"? <PatientProfile socket={socket}/> : <Navigate to = "/"/>} />
-          <Route path="admin" element={<AdminProfile />} />
-          <Route path="patientlandingpage" element={userData?.designation==="patient"?<PatientLandingPage/>:<Navigate to = "/"/>}/>
-          <Route path="doctordetailview/:id" element={userData?.designation==="patient"?<DoctorDetailView socket={socket}/> :<Navigate to = "/"/>} />
-          <Route path="patientdetailview" element={<PatientDetailView />} />
-          <Route path="doctor/:id" element={<EditDoctorProfile />} />
+          <Route path="/" element={<><Navbar /><Home /><Footer/></>} />
+          <Route path="login" element={userData?<Navigate to = "/"/>:<><Login/><Footer/></>} />
+          <Route path="register" element={userData?<Navigate to = "/"/>:<><Signup /><Footer/></>} />
+          <Route path="contact" element = {<><Navbar /><ContactUs /><Footer/></>} />
+          <Route path="doctor" element={userData?.designation==="doctor"?<><Navbar /><DoctorProfile socket={socket}/><Footer /></>:<Navigate to ="/"/>} />
+          <Route path="patient" element={userData?.designation==="patient"? <><Navbar /><PatientProfile socket={socket}/><Footer/></> : <Navigate to = "/"/>} />
+          <Route path="admin" element={<><Navbar /><AdminProfile /><Footer/></>} />
+          <Route path="patientlandingpage" element={userData?.designation==="patient"?<><Navbar /><PatientLandingPage/><Footer/></>:<Navigate to = "/"/>}/>
+          <Route path="doctordetailview/:id" element={userData?.designation==="patient"?<><Navbar /><DoctorDetailView socket={socket}/><Footer/></> :<Navigate to = "/"/>} />
+          <Route path="patientdetailview" element={<><Navbar /><PatientDetailView /><Footer /></>} />
+          <Route path="doctor/:id" element={<><Navbar /><EditDoctorProfile /><Footer/></>} />
           <Route path="appointment" element={<VideoCall socket={socket}/>} />
-          <Route path="patient/:id" element={userData?.designation==="patient"?<EditPatientProfile /> :<Navigate to = "/"/>} />
+          <Route path="patient/:id" element={userData?.designation==="patient"?<><Navbar /><EditPatientProfile /><Footer/></> :<Navigate to = "/"/>} />
         </Routes>
-        <Footer />
       </ChakraProvider>
     </>
   );
