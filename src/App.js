@@ -47,8 +47,8 @@ function App() {
         socket.emit("setup",{sender:userData});
         socket.on("appointmentreq",({patient})=>{
           const obj = {
-            pid : patient._id,
-            did : userData._id
+            pid : patient?._id,
+            did : userData?._id
           }
           const addPending = async () => {
              const data = await addPendingRequest(obj);
@@ -87,11 +87,11 @@ function App() {
           <Route path="login" element={userData?<Navigate to = "/"/>:<><Login/><Footer/></>} />
           <Route path="register" element={userData?<Navigate to = "/"/>:<><Signup /><Footer/></>} />
           <Route path="contact" element = {<><Navbar /><ContactUs /><Footer/></>} />
-          <Route path="doctor" element={userData?.designation==="doctor"?<><Navbar /><DoctorProfile socket={socket}/><Footer /></>:<Navigate to ="/"/>} />
-          <Route path="patient" element={userData?.designation==="patient"? <><Navbar /><PatientProfile socket={socket}/><Footer/></> : <Navigate to = "/"/>} />
+          <Route path="doctor" element={userData?.designation==="doctor"?<><Navbar /><DoctorProfile/><Footer /></>:<Navigate to ="/"/>} />
+          <Route path="patient" element={userData?.designation==="patient"? <><Navbar /><PatientProfile/><Footer/></> : <Navigate to = "/"/>} />
           <Route path="admin" element={<><Navbar /><AdminProfile /><Footer/></>} />
           <Route path="patientlandingpage" element={userData?.designation==="patient"?<><Navbar /><PatientLandingPage/><Footer/></>:<Navigate to = "/"/>}/>
-          <Route path="doctordetailview/:id" element={userData?.designation==="patient"?<><Navbar /><DoctorDetailView socket={socket}/><Footer/></> :<Navigate to = "/"/>} />
+          <Route path="doctordetailview/:id" element={userData?.designation==="patient"?<><Navbar /><DoctorDetailView/><Footer/></> :<Navigate to = "/"/>} />
           <Route path="patientdetailview" element={<><Navbar /><PatientDetailView /><Footer /></>} />
           <Route path="doctor/:id" element={<><Navbar /><EditDoctorProfile /><Footer/></>} />
           <Route path="appointment" element={<VideoCall socket={socket}/>} />

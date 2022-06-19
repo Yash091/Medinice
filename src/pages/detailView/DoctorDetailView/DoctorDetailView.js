@@ -6,11 +6,11 @@ import { getDoctor } from '../../../services/Api';
 import { Avatar, AvatarBadge, AvatarGroup } from "@chakra-ui/react";
 import { AppContext } from '../../../context/Context';
 
-const DoctorDetailView = ({socket}) => {
+const DoctorDetailView = () => {
   
   const {id} = useParams();
   const [doctor,setDoctor] = useState({});
-  const {userData} = useContext(AppContext);
+  const {userData,socket} = useContext(AppContext);
   useEffect(() => {
     
     const getDoctorDetail = async () => {

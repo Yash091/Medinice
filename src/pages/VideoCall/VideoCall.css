@@ -2,10 +2,16 @@
     display: flex;
     justify-content: space-between;
     flex-direction: column;
-    padding-top: 4rem;
+    padding-top: 1.2rem;
     padding-bottom: 4rem;
     background-color: white;
     height: 100vh;
+}
+
+.videocall-container .heading {
+    margin-bottom: 2rem;
+    /* display: flex; */
+    /* justify-content: center; */
 }
 
 .videocall-container .heading .medi{
@@ -24,22 +30,35 @@
 .videocall-container .video-container {
     display: flex;
     flex-direction: row;
-    justify-content: space-around;
+    justify-content: space-evenly;
+    gap: 2rem; 
 }
 
 .videocall-container .video-container .video {
     display: flex;
     align-items: center;
-    justify-content: center;   
+    justify-content: center;
+     
 }
 
 .videocall-container .video-container .video video{
-    width: 90%;
+    /* width: 100%; */
     border-radius: 12px;
 }
 
 .videocall-container .video-container .video1 {
     display: flex;
+}
+
+.videocall-container .video-container .my-user .default {
+    background-color:grey;
+    
+}
+
+.videocall-container .video-container  .my-user {
+    min-width : 45%;
+    background-color: grey;
+    border-radius: 12px;
 }
 
 .videocall-container .buttons {
@@ -80,4 +99,9 @@
         justify-content: center;
         gap: 2rem;
     }
+    
+}
+
+.hidden {
+    display: none!important;
 }

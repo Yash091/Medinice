@@ -26,6 +26,7 @@ const Context = ({ children }) => {
   const [call, setCall] = useState({});
   const [me, setMe] = useState(''); 
   const [myPeer,setMyPeer] = useState(null);
+  const [cameraOff,setCameraOff] = useState(false);
   const myVideo = useRef();
   const userVideo = useRef();
   const connectionRef = useRef();
@@ -39,12 +40,11 @@ const Context = ({ children }) => {
     }
   };
   useEffect(() => {
-    navigator.mediaDevices.getUserMedia({ video: true, audio: true })
+    navigator.mediaDevices.getUserMedia({ video: true, audio: false })
       .then((currentStream) => {
         setStream(currentStream);
         // console.log(currentStream);
         // myVideo.current.srcObject = currentStream;
-       
       });
       
     socket?.on('me', (id) => setMe(id));
@@ -52,6 +52,9 @@ const Context = ({ children }) => {
     socket?.on('callUser', ({ from, name: callerName, signal }) => {
       console.log("Someone is Calling....")
       setCall({ isReceivingCall: true, from, name: callerName, signal });
+    });
+    socket?.on("cameraOff",({isOff,data}) => {
+      setCameraOff(isOff);
     });
   },[socket]);
 
@@ -80,7 +83,6 @@ const Context = ({ children }) => {
     });
 
     peer.signal(call.signal);
-
     connectionRef.current = peer;
   };
 
@@ -150,6 +152,8 @@ const Context = ({ children }) => {
         callUser,
         leaveCall,
         answerCall,
+        cameraOff,
+        setCameraOff
       }}
     >
       {children}

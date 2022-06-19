@@ -1,12 +1,15 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import { Tabs, TabList, TabPanels, Tab, TabPanel, Button, ButtonGroup } from '@chakra-ui/react'
 import "./DoctorProfile.css"
 import LeftContainer from "../../../components/DoctorProfile/LeftContainer/LeftContainer.js"
 import UpcomingAppointments from '../../../components/DoctorProfile/UpcomingAppointments/UpcomingAppointments'
 import PastAppointments from '../../../components/DoctorProfile/PastAppointments/PastAppointments'
 import PendingRequests from '../../../components/DoctorProfile/PendingRequests/PendingRequests'
+import { AppContext } from '../../../context/Context'
 
-const DoctorProfile = ({socket}) => {
+const DoctorProfile = () => {
+  const {socket} = useContext(AppContext);
+  
   return (
     <div className="doc-profile-container">
       <div className = "left-container">

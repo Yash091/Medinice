@@ -3,12 +3,25 @@ import Peer from "simple-peer";
 import { useSearchParams } from "react-router-dom";
 import { AppContext } from "../../context/Context";
 import "./VideoCall.css";
+import defaultImage from "../../../src/images/default-image.png";
+import { Socket } from "socket.io-client";
 
 const VideoCall = () => {
   
+  const [searchParams] = useSearchParams();
+  const did = searchParams.get("did");
+  const pid = searchParams.get("pid");
+  console.log(did , pid);
+  
   const [mute , setMute] = useState(false);
   const [mediaStream,setMediaStream] = useState(null);
-  const { name, callAccepted, myVideo, userVideo, callEnded, stream, call,leaveCall } = useContext(AppContext);
+  const [isCamOn , setIsCamOn] = useState(true); 
+  const [isCamOff , setIsCamOff] = useState(false); 
+  const [isAudioOn , setIsAudioOn] = useState(false);
+  const [isAudioOff , setIsAudioOff] = useState(true);
+  const [videoTag,setVideoTag] = useState();
+  const {userData , name, callAccepted, myVideo, userVideo, callEnded, stream, call,leaveCall,socket , cameraOff,setCameraOff} = useContext(AppContext);
+  
   useEffect(() => {
     const func = async () => {
       const mediaStream = await navigator.mediaDevices.getUserMedia({
@@ -16,31 +29,47 @@ const VideoCall = () => {
         audio: false,
       });
       const video = document.querySelector(".myVideo");
-      // const video1 = document.querySelector(".myVideo1");
+      console.log(video);
       video.srcObject = mediaStream;
-      // video1.srcObject = mediaStream;
       setMediaStream(mediaStream);
-      
+      setVideoTag(video);
     };
     func();
   }, []);
   
-  const cameraOff = async(e) => {
+  
+  const turnCameraOff = async() => {
     const video = document.querySelector(".myVideo");
-    console.log(video.srcObject);
     video.srcObject = null;
-    
+    let data = pid;
+    if(pid === userData._id)
+      data = did;
+    socket.emit("cameraOff",{isOff:true , data});
+    setIsCamOn(false); 
+    setIsCamOff(true)  
   }
-  const cameraOn = async() => {
+
+  const turnCameraOn = async() => {
     const video = document.querySelector(".myVideo");
-    console.log(video.srcObject);
     video.srcObject = mediaStream;
+    let data = pid;
+    if(pid === userData._id)
+      data = did;
+    socket.emit("cameraOff",{isOff:false , data});
+    setIsCamOn(true);
+    setIsCamOff(false);
   }
   
-  const leave = (e) => {
-    e.preventDefault();
-    console.log("leave");
+  const leave = () => {
     leaveCall();
+  }
+
+  const turnMicOff = () => {
+    
+  }
+  
+  const turnMicOn = () => {  
+   
   }
   
   return (
@@ -50,48 +79,73 @@ const VideoCall = () => {
         <span className="nice">Nice</span>
       </div>
       <div className="video-container">
-        {callAccepted && !callEnded ? (
-          <div className="video user">
+        
+          <div className={`video user ${!cameraOff && callAccepted && !callEnded ? "" : "hidden"}`}>
             {
               <video
                 playsInline
                 ref={userVideo}
                 autoPlay
-                style={{ width: "300px" }}
+                style={{ width: "100%" }}
               />
             }
           </div>
-        ) : (
-          <div className="video my user">
-            {/* <video className="myVideo1" playsInline autoPlay></video> */}
+         
+          <div className={`video my-user ${!cameraOff && callAccepted && !callEnded ? "" : "hidden"}`}>
+            <img src={defaultImage} alt="default" className="default" />
           </div>
-        )}
-        <div className="video my me">
-          <video className="myVideo" playsInline autoPlay></video>
+        
+        
+        <div className={`video my me ${isCamOn === false ? "hidden" : ""}`}>
+           <video className="myVideo" playsInline autoPlay></video>
         </div>
-        {/*       
-        {
-          callAccepted?
-          <div className="video">
-          {<video playsInline ref={myVideo} autoPlay style={{ width: "300px"}} />}
-          </div>:<div>Nobody joined</div>
-        } */}
+        <div className={`video my-user ${isCamOn ? "hidden" : ""}`}>
+          <img src={defaultImage} alt="default" className="default" />
+        </div>
+        
       </div>
       <div className="buttons">
-        <div className="butt">
-          <i className="fa fa-solid fa-microphone" style={{fontSize: "20px" , color : "#162D55"}}></i>
+        <div className={`butt `}>
+          <i
+            className={`fa fa-solid fa-microphone ${isAudioOn ? "" : "hidden"}`}
+            style={{ fontSize: "20px", color: "#162D55" }}
+            onClick={(e) => (
+              turnMicOn(e), setIsAudioOn(true), setIsAudioOff(false)
+            )}
+          ></i>
+          <i
+            className={`fa fa-solid fa-microphone-slash ${
+              isAudioOff ? "" : "hidden"
+            }`}
+            style={{ fontSize: "20px", color: "#162D55" }}
+            onClick={(e) => (
+              turnMicOff(e), setIsAudioOn(false), setIsAudioOff(true)
+            )}
+          ></i>
         </div>
-        <div className="butt">
-          <i className="fa fa-solid fa-microphone-slash" style={{fontSize: "20px" , color : "#162D55"}}></i>
+        {/* <div className={`butt`} onClick={(e) => {micOff(e)}}>
+        </div> */}
+        <div className={`butt`}>
+          <i
+            className={`fa fa-solid fa-video ${isCamOn ? "" : "hidden"}`}
+            style={{ fontSize: "20px", color: "#162D55" }}
+            onClick={(e) => (turnCameraOff())}
+          ></i>
+          <i
+            className={`fa fa-solid fa-video-slash ${isCamOff ? "" : "hidden"}`}
+            style={{ fontSize: "20px", color: "#162D55" }}
+            onClick={(e) => (
+              turnCameraOn()
+            )}
+          ></i>
         </div>
-        <div className="butt">
-          <i className="fa fa-solid fa-video" style={{fontSize: "20px" , color : "#162D55"}} onClick={()=>{cameraOn()}}></i>
-        </div>
-        <div className="butt">
-          <i className="fa fa-solid fa-video-slash" style={{fontSize: "20px" , color : "#162D55"}} onClick={(e) => {cameraOff(e)}}></i>
-        </div>
-        <div className="butt" >
-          <i className='fas fa-phone-slash' style={{fontSize:"20px",color:"#162D55"}} onClick={(e) => leave(e)}></i>
+        {/* <div className={`butt`} onClick={(e) => {cameraOff(e)}}>
+        </div> */}
+        <div className={`butt`} onClick={(e) => leave(e)}>
+          <i
+            className="fas fa-phone-slash"
+            style={{ fontSize: "20px", color: "#162D55" }}
+          ></i>
         </div>
       </div>
     </div>
