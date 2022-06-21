@@ -32,6 +32,7 @@
     flex-direction: row;
     justify-content: space-evenly;
     gap: 2rem; 
+    padding: 1rem;
 }
 
 .videocall-container .video-container .video {

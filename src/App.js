@@ -22,7 +22,7 @@ import VideoCall from "./pages/VideoCall/VideoCall.js"
 
 import { AppContext } from "./context/Context";
 import { addPendingRequest, getDoctor , addPatUpcomingAppt } from "./services/Api.js";
-import Peer from "simple-peer";
+
 
 function App() {
 
@@ -35,16 +35,27 @@ function App() {
     setDoctorSignal,
     setReceivingDoctorCall,
     socket,
-    setSocket
+    setSocket,
+    myPeer,
+    userVideo,
+    setMyPeer
   } = useContext(AppContext);
   
+  // useEffect(()=>{
+  //   if(!myPeer)
+  //     return;
+  //   myPeer.on('stream', (currentStream) => {
+  //     userVideo.current.srcObject = currentStream;
+  //   });
+  // })
+
   useEffect(()=>{
     
     if(socket === null){
       return;
     }else{
       if(userData)
-        socket.emit("setup",{sender:userData});
+        // socket.emit("setup",{sender:userData});
         socket.on("appointmentreq",({patient})=>{
           const obj = {
             pid : patient?._id,

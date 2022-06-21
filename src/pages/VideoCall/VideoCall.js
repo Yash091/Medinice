@@ -1,10 +1,8 @@
 import { React, useEffect, useRef, useState, useContext } from "react";
-import Peer from "simple-peer";
 import { useSearchParams } from "react-router-dom";
 import { AppContext } from "../../context/Context";
 import "./VideoCall.css";
 import defaultImage from "../../../src/images/default-image.png";
-import { Socket } from "socket.io-client";
 
 const VideoCall = () => {
   
@@ -20,13 +18,23 @@ const VideoCall = () => {
   const [isAudioOn , setIsAudioOn] = useState(false);
   const [isAudioOff , setIsAudioOff] = useState(true);
   const [videoTag,setVideoTag] = useState();
-  const {userData , name, callAccepted, myVideo, userVideo, callEnded, stream, call,leaveCall,socket , cameraOff,setCameraOff} = useContext(AppContext);
+  const {userData ,myPeer,setMyPeer, name, callAccepted, myVideo, userVideo, callEnded, stream, call,leaveCall,socket , cameraOff,setCameraOff} = useContext(AppContext);
   
+
+  useEffect(()=>{
+    if(!myPeer)
+      return;
+    myPeer.on('stream', (currentStream) => {
+      userVideo.current.srcObject = currentStream;
+    });
+    console.log(stream);
+  })
+
   useEffect(() => {
     const func = async () => {
       const mediaStream = await navigator.mediaDevices.getUserMedia({
         video: true,
-        audio: false,
+        audio: true,
       });
       const video = document.querySelector(".myVideo");
       console.log(video);
@@ -36,7 +44,12 @@ const VideoCall = () => {
     };
     func();
   }, []);
-  
+  useEffect(()=>{
+    
+    socket?.on("cameraOff",({isOff,data}) => {
+      setCameraOff(isOff);
+    });
+  },[socket])
   
   const turnCameraOff = async() => {
     const video = document.querySelector(".myVideo");
@@ -46,7 +59,7 @@ const VideoCall = () => {
       data = did;
     socket.emit("cameraOff",{isOff:true , data});
     setIsCamOn(false); 
-    setIsCamOff(true)  
+    setIsCamOff(true);
   }
 
   const turnCameraOn = async() => {
@@ -79,29 +92,38 @@ const VideoCall = () => {
         <span className="nice">Nice</span>
       </div>
       <div className="video-container">
-        
-          <div className={`video user ${!cameraOff && callAccepted && !callEnded ? "" : "hidden"}`}>
-            {
-              <video
-                playsInline
-                ref={userVideo}
-                autoPlay
-                style={{ width: "100%" }}
-              />
-            }
-          </div>
-         
-          <div className={`video my-user ${!cameraOff && callAccepted && !callEnded ? "" : "hidden"}`}>
+      {
+        callAccepted && !callEnded ?
+            <>
+              <div className={`video user ${!cameraOff ? "" : "hidden" }`}>
+                <video
+                  playsInline
+                  ref={userVideo}
+                  autoPlay
+                  muted
+                  style={{ width: "100%"}}
+                />
+              </div>
+              <div className={`video my-user ${!cameraOff ? "hidden" : "" }`}>
+                <img src={defaultImage} alt="default" className="default" />
+              </div>
+              <audio ref={userVideo} autoPlay/>
+            </>
+          :   
+          <div className={`video my-user`}>
             <img src={defaultImage} alt="default" className="default" />
           </div>
-        
-        
-        <div className={`video my me ${isCamOn === false ? "hidden" : ""}`}>
-           <video className="myVideo" playsInline autoPlay></video>
-        </div>
-        <div className={`video my-user ${isCamOn ? "hidden" : ""}`}>
-          <img src={defaultImage} alt="default" className="default" />
-        </div>
+      }
+      {
+        <>
+          <div className={`video my me ${isCamOn === false ? "hidden" : ""}`}>
+             <video className="myVideo" playsInline muted autoPlay></video>
+          </div>
+          <div className={`video my-user ${isCamOn ? "hidden" : ""}`}>
+            <img src={defaultImage} alt="default" className="default" />
+          </div>
+        </>
+      }
         
       </div>
       <div className="buttons">

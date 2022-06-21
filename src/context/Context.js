@@ -40,7 +40,7 @@ const Context = ({ children }) => {
     }
   };
   useEffect(() => {
-    navigator.mediaDevices.getUserMedia({ video: true, audio: false })
+    navigator.mediaDevices.getUserMedia({ video: true , audio : true })
       .then((currentStream) => {
         setStream(currentStream);
         // console.log(currentStream);
@@ -53,26 +53,28 @@ const Context = ({ children }) => {
       console.log("Someone is Calling....")
       setCall({ isReceivingCall: true, from, name: callerName, signal });
     });
-    socket?.on("cameraOff",({isOff,data}) => {
-      setCameraOff(isOff);
-    });
+    // socket?.on("cameraOff",({isOff,data}) => {
+    //   setCameraOff(isOff);
+    // });
   },[socket]);
 
   useEffect(() => {
     if(!socket)
       setSocket(io("http://localhost:8000"));
     const data = JSON.parse(window.localStorage.getItem("user"));
+    if(data)
+      socket?.emit("setup",{sender:userData});
     // if(!data)
     //   navigate("/");
     // else
     setUserData(data);
-  }, [navigate]);
+  }, [navigate,socket]);
 
   const answerCall = () => {
     setCallAccepted(true);
 
     const peer = new Peer({ initiator: false, trickle: false, stream });
-    // setMyPeer(peer);
+    setMyPeer(peer);
     // myVideo.current.srcObject = stream;
     peer.on('signal', (data) => {
       socket.emit('answerCall', { signal: data, to: call.from });
@@ -108,7 +110,7 @@ const Context = ({ children }) => {
 
   const leaveCall = () => {
     setCallEnded(true);
-
+    navigate("/");
     connectionRef.current.destroy();
     socket.emit("disconnect");
     window.location.reload();
@@ -153,7 +155,9 @@ const Context = ({ children }) => {
         leaveCall,
         answerCall,
         cameraOff,
-        setCameraOff
+        setCameraOff,
+        myPeer,
+        setMyPeer
       }}
     >
       {children}

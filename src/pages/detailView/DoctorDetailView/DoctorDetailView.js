@@ -25,8 +25,8 @@ const DoctorDetailView = () => {
   // console.log(doctor);
   
   const bookAppointment = () => {
-    // console.log("getappointment",socket);
     socket.emit("getappointment",{id,userData});
+    console.log("getappointment");
   }
 
   return (
