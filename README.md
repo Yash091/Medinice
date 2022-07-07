@@ -73,7 +73,7 @@ MediNice is an online consultancy website where patient can book appointment wit
             |-- navbar/                 #Contains UI for Navbar
             |-- whychooseus             #Contains UI for why choose us container
         |-- images/               #Contains images used in the project
-        |-- context/              #Contains context file
+        |-- context/              #Defined all global states
         |-- pages/                #Contains all the different pages
             |-- Authentication/         #Contains pages related to authentication
             |-- home/                   #Contains home page
