@@ -101,27 +101,27 @@ MediNice is an online consultancy website where patient can book appointment wit
 
 | Method | Route | parameters | body | Description |
 | -------- | -------- | -------- | -------- | -------- |
-| `POSt` | /adddoctor | |  |  Take the details as input and create doctor profile|
-| `POST` | /logdoctor | | password | Updates password of admin|
-| `GET` | /getalldoctor | | name , email , password , enrolment no. , cgpa , semester , course , mobile , gender , resume | Take the details as input and create student profile |
-| `GET` | /getdoctorr | | | Returns the array of all students |
-| `POST` | /updatedoctor | | name , email , password , cgpa , semester , course , mobile , gender , resume | Take the details as input and update student |
-| `POST` | /addpendingrequest | | studentId | Get student by given id |
-| `POST` | /getpendingappts | | studentId | Delete the student with given id |
-| `POST` | /deletependingreq | | name , type , description | Allows admin to add company |
-| `POST` | /addupcomingappt | | | Returns array of all companies |
-| `GET` | /getupcomingappts | companyId | | Get the required company having this id |
-| `POST` | /addpastappt | | companyId | Allows admin to update the particular company having this id |
-| `POST` | /getpastappts | | companyId | Allows admin to delete the particular company having this id |
-| `POST` | /addpatient | | name , description , salary , company_name | Take the details and allows admin to add a new company |
-| `POST` | /logPatient | | | Returns array of all jobs |
-| `GET` | /getallpatient | JobId | | Returns the job having this id |
-| `GET` | /getpatient | | jobId | Allows admin to delete job having this id |
-| `POST` | /searchdoctor | | jobId | Allows admin to update job having this id|
-| `POST` | /updatepatient | | enrolment number , student name , jobId , jobName , companyName | Allows a particular student to apply for a particular job |
-| `POST` | /addpatupcomingappt | studentId | | Allows student to view the jobs he/she has applied |
-| `POST` | /addpatpastappt | | | Allows admin to view which job has been applied by which student |  
-| `POST` | /logAdmin | | | |
+| `POSt` | /adddoctor | |  | Take the details as input and create doctor profile |
+| `POST` | /logdoctor | | password | Take the password as input and authenticate doctor |
+| `GET` | /getalldoctor | | name , email , password , enrolment no. , cgpa , semester , course , mobile , gender , resume | Returns array containing all doctors |
+| `GET` | /getdoctorr | | | Takes an id and returns information of that doctor |
+| `POST` | /updatedoctor | | name , email , password , cgpa , semester , course , mobile , gender , resume | Take the details as input and update doctor |
+| `POST` | /addpendingrequest | | studentId | Add a meeting request in pending request array of doctor |
+| `GET` | /getpendingappts | | studentId | Returns array containing all the pending requests for a particular doctor |
+| `POST` | /deletependingreq | | name , type , description | Delete a pending request for a particular doctor |
+| `POST` | /addupcomingappt | | | Add a meeting request in upcoming request array of doctor |
+| `GET` | /getupcomingappts | companyId | | Returns array containing all the upcoming requests for a particular doctor |
+| `POST` | /addpastappt | | companyId | Add a meeting details in past appointments array of doctor |
+| `GET` | /getpastappts | | companyId | Returns array containing all the past requests for a particular doctor |
+| `POST` | /addpatient | | name , description , salary , company_name | Take the details as input and create patient profile |
+| `POST` | /logPatient | | | Take the password as input and authenticate patient |
+| `GET` | /getallpatient | JobId | | Returns array containing all patients |
+| `GET` | /getpatient | | jobId | Takes an id and returns information of that patient |
+| `POST` | /searchdoctor | | jobId | Takes the required tags in inputs and returns the matching doctor profiles. |
+| `POST` | /updatepatient | | enrolment number , student name , jobId , jobName , companyName | Take the details as input and update patient |
+| `POST` | /addpatupcomingappt | studentId | | Add a meeting request to upcoming appointment array of patient |
+| `POST` | /addpatpastappt | | | Add a meeting request to past appointment array of patient |  
+| `POST` | /logAdmin | | | Takes password of admin as input and authenticate admin. |
 
 ## Screens  
 ![Frame 84](https://user-images.githubusercontent.com/76587223/169648864-0d055439-6316-43c1-b34b-ccd072614946.png)
