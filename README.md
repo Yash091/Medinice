@@ -118,7 +118,7 @@ MediNice is an online consultancy website where patient can book appointment wit
 | `POST` | /logPatient | | email, password | Take the email and password as input and authenticate patient |
 | `GET` | /getallpatient | | | Returns array containing all patients |
 | `GET` | /getpatient | | id | Takes an id and returns information of that patient |
-| `POST` | /searchdoctor | | name, country, speciality, qualification | Takes the required tags in inputs and returns the matching doctor profiles. |
+| `POST` | /searchdoctor | name, country, speciality, qualification | | Takes the required tags in inputs and returns the matching doctor profiles. |
 | `POST` | /updatepatient | | name, email, password, designation,mobile, gender, dob, address, age | Take the details as input and update patient |
 | `POST` | /addpatupcomingappt | | pid, did, time, date | Takes details as input and add a meeting request to upcoming appointment array of patient |
 | `POST` | /addpatpastappt | | pid, did, time, date | Takes d etails as input and add a meeting request to past appointment array of patient |  
