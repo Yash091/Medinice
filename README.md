@@ -122,7 +122,6 @@ MediNice is an online consultancy website where patient can book appointment wit
 | `POST` | /updatepatient | | name, email, password, designation,mobile, gender, dob, address, age | Take the details as input and update patient |
 | `POST` | /addpatupcomingappt | | pid, did, time, date | Takes details as input and add a meeting request to upcoming appointment array of patient |
 | `POST` | /addpatpastappt | | pid, did, time, date | Takes d etails as input and add a meeting request to past appointment array of patient |  
-| `POST` | /logAdmin | | | Takes password of admin as input and authenticate admin. |
 
 ## Screens  
 
