@@ -94,7 +94,7 @@ MediNice is an online consultancy website where patient can book appointment wit
         |-- DoctorSchema.js       #Contains doctor schema
         |-- PatientSchema.js      #Contains patient schema
     |-- route/               #Contains all routes used in project
-    |-- server.js            #Main file of server folder
+    |-- server.js            #Main file of Medinice server folder. Initialized socket.IO - server.
 ```
 
 ## APIs
