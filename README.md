@@ -40,6 +40,7 @@ MediNice is an online consultancy website where patient can book appointment wit
   1. You will find 2 folders.
       - Medinice
       - Medinice-server
+      
       ```You can change the names of folder if you want.```
    2. To run Client folder, type the following commands in terminal
       - cd Medinice
