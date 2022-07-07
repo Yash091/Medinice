@@ -99,28 +99,29 @@ MediNice is an online consultancy website where patient can book appointment wit
 
 ## APIs
 
-| Routes | parameters | body | Description |
-| -------- | -------- | -------- | -------- |
-| `POSt` /loginadmin | | password | Take password as input and login admin if credentials are correct |
-| `POST` /adminupdate | | password | Updates password of admin|
-| `POST` /addstudent | | name , email , password , enrolment no. , cgpa , semester , course , mobile , gender , resume | Take the details as input and create student profile |
-| `GET` /getallstudent | | | Returns the array of all students |
-| `POST` /updatestudent | | name , email , password , cgpa , semester , course , mobile , gender , resume | Take the details as input and update student |
-| `POST` /getstudent | | studentId | Get student by given id |
-| `POST` /deletestudent | | studentId | Delete the student with given id |
-| `POST` /addcompany | | name , type , description | Allows admin to add company |
-| `GET` /getallcompany | | | Returns array of all companies |
-| `GET` /getcompany | companyId | | Get the required company having this id |
-| `POST` /updatecompany | | companyId | Allows admin to update the particular company having this id |
-| `POST` /deletecompany | | companyId | Allows admin to delete the particular company having this id |
-| `POST` /addjob | | name , description , salary , company_name | Take the details and allows admin to add a new company |
-| `GET` /getalljob | | | Returns array of all jobs |
-| `GET` /getjob | JobId | | Returns the job having this id |
-| `POST` /deletejob | | jobId | Allows admin to delete job having this id |
-| `POST` /updatejob | | jobId | Allows admin to update job having this id|
-| `POST` /applyjob | | enrolment number , student name , jobId , jobName , companyName | Allows a particular student to apply for a particular job |
-| `GET` /viewapplyjob | studentId | | Allows student to view the jobs he/she has applied |
-|`GET` /getallapplyjob | | | Allows admin to view which job has been applied by which student |  
+| Method | Route | parameters | body | Description |
+| -------- | -------- | -------- | -------- | -------- |
+| `POSt` | /adddoctor | |  |  Take the details as input and create doctor profile|
+| `POST` | /logdoctor | | password | Updates password of admin|
+| `GET` | /getalldoctor | | name , email , password , enrolment no. , cgpa , semester , course , mobile , gender , resume | Take the details as input and create student profile |
+| `GET` | /getdoctorr | | | Returns the array of all students |
+| `POST` | /updatedoctor | | name , email , password , cgpa , semester , course , mobile , gender , resume | Take the details as input and update student |
+| `POST` | /addpendingrequest | | studentId | Get student by given id |
+| `POST` | /getpendingappts | | studentId | Delete the student with given id |
+| `POST` | /deletependingreq | | name , type , description | Allows admin to add company |
+| `POST` | /addupcomingappt | | | Returns array of all companies |
+| `GET` | /getupcomingappts | companyId | | Get the required company having this id |
+| `POST` | /addpastappt | | companyId | Allows admin to update the particular company having this id |
+| `POST` | /getpastappts | | companyId | Allows admin to delete the particular company having this id |
+| `POST` | /addpatient | | name , description , salary , company_name | Take the details and allows admin to add a new company |
+| `POST` | /logPatient | | | Returns array of all jobs |
+| `GET` | /getallpatient | JobId | | Returns the job having this id |
+| `GET` | /getpatient | | jobId | Allows admin to delete job having this id |
+| `POST` | /searchdoctor | | jobId | Allows admin to update job having this id|
+| `POST` | /updatepatient | | enrolment number , student name , jobId , jobName , companyName | Allows a particular student to apply for a particular job |
+| `POST` | /addpatupcomingappt | studentId | | Allows student to view the jobs he/she has applied |
+| `POST` | /addpatpastappt | | | Allows admin to view which job has been applied by which student |  
+| `POST` | /logAdmin | | | |
 
 ## Screens  
 ![Frame 84](https://user-images.githubusercontent.com/76587223/169648864-0d055439-6316-43c1-b34b-ccd072614946.png)
