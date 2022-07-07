@@ -33,56 +33,65 @@ MediNice is an online consultancy website where patient can book appointment wit
         ```
   6. Press Enter and the project will be cloned in you system.
 
-- You can directly download the zip file and extract it
+  ```You can directly download the zip file and extract it```
 
-**After extracting the zip file or after cloning the repository**
+- After extracting the zip file or after cloning the repository
 
-1. You will find 2 folders.
-    - Medinice
-    - Medinice-server
-    
-    **Note** - You can change the names of folder if you want.
-2. To run Client folder, type the following commands in terminal
-    1. cd Medinice
-    1. npm install
-    1. npm start
-    
-        **Frontend port - 3000**
-3. To run Server folder, type the following commands in terminal
-    1. cd Medinice-server
-    1. npm install
-    1. npm start
-    
-        **Backend port - 8000**
-4. Your project will start running if you followed the instructions properly.
+  1. You will find 2 folders.
+      - Medinice
+      - Medinice-server
+      ```You can change the names of folder if you want.```
+   2. To run Client folder, type the following commands in terminal
+      - cd Medinice
+      - npm install
+      - npm start
+      
+      ```Frontend port - 3000```
+  3. To run Server folder, type the following commands in terminal
+      - cd Medinice-server
+      - npm install
+      - npm start
+      
+      ```Backend port - 8000```
+  4. Your project will start running if you followed the instructions properly.
 
 ## Brief Project Structure
 
 ```
 /
-|-- client/		
+|-- medinice/		
     |-- public/
         |-- index.html            #First webpage of the project
     |-- src/
         |-- components/           #Contains all the required components of project
-            |-- Navbar/               #Contains UI for navbar
-            |-- common/               #Contains UI for common coomon features of admin and student
-            |-- admin/                #Contains UI for features of admin
-            |-- student/              #Contains UI for features of student
+            |-- DoctorProfile/          #Contains UI for Doctor's profile
+            |-- PatientProfile/         #Contains UI for Patient's profile
+            |-- doctorCard/             #Contains UI for Doctor's Card
+            |-- footer/                 #Contains UI for footer
+            |-- meetOurSpecialists/     #Contains UI for meeting specialists container
+            |-- navbar/                 #Contains UI for Navbar
+            |-- whychooseus             #Contains UI for why choose us container
         |-- images/               #Contains images used in the project
         |-- context/              #Contains context file
         |-- pages/                #Contains all the different pages
-            |-- Authentication/       #Contains pages related to authentication
-            |-- home/                 #Contains home page
+            |-- Authentication/         #Contains pages related to authentication
+            |-- home/                   #Contains home page
+            |-- ContactUs/              #Contains ContactUs page
+            |-- LandingPages/           #Contains Landing Pages
+            |-- ProfilePages/           #Contains Profile Pages for doctor, patient and admin
+            |-- VideoCall/              #Contains Video Call Page
+            |-- DetailView/             #Contains Detail View Pages for doctor and patient
         |-- services/             #Contains all the api functions used in the project
 |    
-|-- server/
+|-- Medinice-server/
     |-- controller/          #Contains all the controllers of project
         |-- adminconroller.js     #Contains all the functions related to admin
-        |-- companycontroller.js  #Contains all the functions related to companies
-        |-- jobcontroller.js      #Contains all the functions related to companies
-        |-- studentconroller.js   #Contains all the functions related to students
+        |-- doctorController.js   #Contains all the functions related to doctor
+        |-- patientController.js  #Contains all the functions related to patient
     |-- database/            #To establish connection between database and backend
+    |-- modal/               #Contains Schemas
+        |-- DoctorSchema.js       #Contains doctor schema
+        |-- PatientSchema.js      #Contains patient schema
     |-- route/               #Contains all routes used in project
     |-- server.js            #Main file of server folder
 ```
