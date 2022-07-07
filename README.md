@@ -101,22 +101,23 @@ MediNice is an online consultancy website where patient can book appointment wit
 
 | Method | Route | parameters | body | Description |
 | -------- | -------- | -------- | -------- | -------- |
-| `POSt` | /adddoctor | |  | Take the details as input and create doctor profile |
-| `POST` | /logdoctor | | password | Take the password as input and authenticate doctor |
-| `GET` | /getalldoctor | | name , email , password , enrolment no. , cgpa , semester , course , mobile , gender , resume | Returns array containing all doctors |
-| `GET` | /getdoctorr | | | Takes an id and returns information of that doctor |
-| `POST` | /updatedoctor | | name , email , password , cgpa , semester , course , mobile , gender , resume | Take the details as input and update doctor |
-| `POST` | /addpendingrequest | | studentId | Add a meeting request in pending request array of doctor |
-| `GET` | /getpendingappts | | studentId | Returns array containing all the pending requests for a particular doctor |
-| `POST` | /deletependingreq | | name , type , description | Delete a pending request for a particular doctor |
-| `POST` | /addupcomingappt | | | Add a meeting request in upcoming request array of doctor |
-| `GET` | /getupcomingappts | companyId | | Returns array containing all the upcoming requests for a particular doctor |
-| `POST` | /addpastappt | | companyId | Add a meeting details in past appointments array of doctor |
-| `GET` | /getpastappts | | companyId | Returns array containing all the past requests for a particular doctor |
-| `POST` | /addpatient | | name , description , salary , company_name | Take the details as input and create patient profile |
-| `POST` | /logPatient | | | Take the password as input and authenticate patient |
-| `GET` | /getallpatient | JobId | | Returns array containing all patients |
-| `GET` | /getpatient | | jobId | Takes an id and returns information of that patient |
+| `POSt` | /adddoctor | | name, age, email, designation, mobile, password, speciality, address, gender, picture, experience, dob, qualification | Take the details as input and create doctor profile |
+| `POST` | /logdoctor | | email, password | Take the email and password as input and authenticate doctor |
+| `GET` | /getalldoctor | | | Returns array containing all doctors |
+| `GET` | /getdoctorr | id | | Takes an id and returns information of that doctor |
+| `POST` | /updatedoctor | | name, age, email, designation, mobile, password, speciality, address, gender, picture, experience, dob, qualification | Take the details as input and update doctor |
+| `POST` | /addpendingrequest | | pid, did | Takes patient and doctor id as input and add a meeting request in pending request array of doctor |
+| `GET` | /getpendingappts | id | | Takes doctor's id as input and returns array containing all the pending requests for a particular doctor |
+| `POST` | /deletependingreq | | pid , did | Takes patient and doctor id as input and delete a pending request for a particular doctor |
+| `POST` | /addupcomingappt | | pid, did, time, data | Takes the details and add a meeting request in upcoming request array of doctor |
+| `GET` | /getupcomingappts | id | | Takes doctor's id as input and returns array containing all the upcoming requests for a particular doctor |
+| `POST` | /addpastappt | | pid, did, time, data | Takes the details and add a meeting details in past appointments array of doctor |
+| `GET` | /getpastappts | id | | Takes doctor's id as input and returns array containing all the past requests for a particular doctor |
+| `POST` | /deletedoctor | | id | Takes doctor's id as input and deletes the profile of doctor |
+| `POST` | /addpatient | | name, email, password, designation,mobile, gender, dob, address, age | Take the details as input and create patient profile |
+| `POST` | /logPatient | | email, password | Take the email and password as input and authenticate patient |
+| `GET` | /getallpatient | | | Returns array containing all patients |
+| `GET` | /getpatient | | id | Takes an id and returns information of that patient |
 | `POST` | /searchdoctor | | jobId | Takes the required tags in inputs and returns the matching doctor profiles. |
 | `POST` | /updatepatient | | enrolment number , student name , jobId , jobName , companyName | Take the details as input and update patient |
 | `POST` | /addpatupcomingappt | studentId | | Add a meeting request to upcoming appointment array of patient |
